@@ -39,12 +39,13 @@
                         <p>A description of the second project goes here.</p>
                     </div>
                 </div>
+                <button id="add-project">Add Project</button>
             </div>
         </section>
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Contact Me</h2>
-                <form action="#" method="POST">
+                <form id="contact-form" action="#" method="POST">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
                     <label for="email">Email</label>
@@ -53,6 +54,7 @@
                     <textarea id="message" name="message" rows="4" required></textarea>
                     <button type="submit">Send</button>
                 </form>
+                <p id="thank-you-message" style="display: none; color: green;">Thank you for reaching out! I'll get back to you soon.</p>
             </div>
         </section>
     </main>
@@ -61,6 +63,38 @@
             <p>&copy; 2024 My Portfolio. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Change header color on hover
+        const header = document.querySelector('.header');
+        header.addEventListener('mouseenter', () => {
+            header.style.backgroundColor = '#f0f0f0';
+        });
+        header.addEventListener('mouseleave', () => {
+            header.style.backgroundColor = '';
+        });
+
+        // Add a new project
+        const addProjectButton = document.getElementById('add-project');
+        const projectList = document.querySelector('.project-list');
+        addProjectButton.addEventListener('click', () => {
+            const newProject = document.createElement('div');
+            newProject.classList.add('project-item');
+            newProject.innerHTML = `
+                <h3>New Project</h3>
+                <p>A description of the new project goes here.</p>
+            `;
+            projectList.appendChild(newProject);
+        });
+
+        // Show thank-you message on form submission
+        const contactForm = document.getElementById('contact-form');
+        const thankYouMessage = document.getElementById('thank-you-message');
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent actual form submission
+            thankYouMessage.style.display = 'block';
+            contactForm.reset(); // Reset form fields
+        });
+    </script>
 </body>
 </html>
-
